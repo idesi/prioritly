@@ -1,21 +1,24 @@
 import React from 'react';
 import AppBar from 'material-ui/AppBar';
 
-import {deepOrange500} from 'material-ui/styles/colors';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-const muiTheme = getMuiTheme({
-  appBar: {
-    accent1Color: deepOrange500,
-  },
-});
+
+const styles = {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    padding: '20px 24px',
+    'boxSizing': 'border-box',
+    'textAlign': 'center',
+    'backgroundColor': 'rgb(33, 33, 33)',
+    'width': '100%',
+    'color': 'rgba(255, 255, 255, 0.541176)',
+    'fontFamily': 'Robot, sans-serif'
+}
 
 export default function(props){
     return (
         <div>
-        <MuiThemeProvider muiTheme={muiTheme}>
-            <AppBar title="Prioritly" />
-        </MuiThemeProvider>
+            <footer style={styles}>Prioritly</footer>
         </div>
     )
 }

@@ -2,15 +2,26 @@ const todos = [
     {
         id: 1,
         title: 'Go grocery shopping',
-        desciption: 'Make sure you go to Petsmart on your way back.',
-        isComplete: false
+        description: 'Make sure you go to Petsmart on your way back.',
+        isComplete: false,
+        priority: 'high'
     },
     {
         id: 2,
         title: 'Finish the user interface of the application',
-        desciption: '',
-        isComplete: false
+        description: 'Rush!',
+        isComplete: false,
+        priority: 'medium'
+    },
+    {
+        id: 3,
+        title: 'Pick nicer colors',
+        description: 'You gotta change them colors',
+        isComplete: false,
+        priority: 'low'
     }
 ]
 
-export default todos;
+const obj = {todos}
+
+export default obj;

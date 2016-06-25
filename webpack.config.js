@@ -10,7 +10,7 @@ module.exports = {
     output: {
         path: __dirname + '/dist',
         filename: 'index_bundle.js',
-        pubicPath: '/'
+        pubicPath: '/dist/'
     },
     module: {
         loaders:[

@@ -4,7 +4,8 @@
   "description": "A todo application designed to help the user prioritize the todo list in a way which will make them more productive.",
   "main": "app/index.js",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "nodemon server/server.js",
+    "dev": "webpack-dev-server",
     "prod": "webpack -p"
   },
   "keywords": [
@@ -17,14 +18,20 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.12.0",
+    "bluebird": "^3.4.1",
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
     "jquery": "^2.2.4",
+    "lodash": "^4.13.1",
     "material-ui": "^0.15.0",
+    "mongoose": "^4.5.1",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
+    "react-redux": "^4.4.5",
     "react-router": "^2.4.1",
-    "react-tap-event-plugin": "^1.0.0"
+    "react-tap-event-plugin": "^1.0.0",
+    "redux": "^3.5.2",
+    "webpack-dev-middleware": "^1.6.1"
   },
   "devDependencies": {
     "babel-core": "^6.9.1",
@@ -32,6 +39,7 @@
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.5.0",
     "html-webpack-plugin": "^2.19.0",
+    "nodemon": "^1.9.2",
     "webpack": "^1.13.1",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-dev-server": "^1.14.1"
