@@ -18,13 +18,13 @@ const styles ={
     }
 }
 
-const Todo = ({id, onClick, title, isComplete, priority, description,
+const Todo = ({_id, onClick, title, isComplete, priority, description,
     // onTodoSave
 }) => {
     return (
         <div>
         <Link
-            to={'/todo/' + id}
+            to={'/todo/' + _id}
         >
             <EditIcon />
         </Link>

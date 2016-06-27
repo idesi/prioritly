@@ -1,11 +1,11 @@
 var mongoose = require('mongoose');
 
 var todoSchema = new mongoose.Schema({
-  title: String,
-  description: String,
+  title: {type: String, required: true},
+  description: {type: String, required: false},
   isComplete: {type: Boolean, default: false},
-  priority: String,
-  author: {type: mongoose.Schema.Types.ObjectId, ref: 'user'}
+  priority: {type: String, required: true},
+  //author: {type: mongoose.Schema.Types.ObjectId, ref: 'user'}
 });
 
 module.exports = mongoose.model('Todo', todoSchema);

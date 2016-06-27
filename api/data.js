@@ -22,6 +22,6 @@ const todos = [
     }
 ]
 
-const obj = {todos}
+const obj = {isFetching: false, todos: todos};
 
 export default obj;

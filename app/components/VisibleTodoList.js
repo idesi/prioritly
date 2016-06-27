@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import TodoList from './TodoList';
-import {toggleTodo, changePriority, setVisbilityFilter} from '../actions';
+import {updateIsComplete, changePriority, setVisbilityFilter} from '../actions';
 
 const filterTodos= (todos, filter) => {
     switch (filter) {
@@ -22,8 +22,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onTodoClick: (id) => {
-            dispatch(toggleTodo(id));
+        onTodoClick: (todo) => {
+            dispatch(updateIsComplete(todo));
         },
         onPriorityChange: (id, newPriority) => {
             dispatch(changePriority(id, newPriority));

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addTodo } from '../actions'
+import { postTodo } from '../actions'
 
 let AddTodo = ({ dispatch }) => {
   let input, select;
@@ -12,7 +12,8 @@ let AddTodo = ({ dispatch }) => {
         if (!input.value.trim()) {
           return
         }
-        dispatch(addTodo({title: input.value, priority: select.value}))
+        dispatch(postTodo({title: input.value, priority: select.value}))
+        //dispatch(addTodo({title: input.value, priority: select.value}))
         input.value = ''
       }}>
         <input ref={node => {

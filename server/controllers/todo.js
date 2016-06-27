@@ -51,8 +51,10 @@ exports.put = function(req, res, next) {
 
 exports.post = function(req, res, next) {
   var newtodo = req.body;
+  console.log(newtodo);
   Todo.create(newtodo)
     .then(function(todo) {
+        console.log('server todo is', todo);
       res.json(todo);
     }, function(err) {
       logger.error(err);

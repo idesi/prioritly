@@ -1,10 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {updateTodo, deleteTodo} from '../actions';
-import {Link} from 'react-router';
+import {putTodo, destroyTodo} from '../actions';
+import {Link, browserHistory} from 'react-router';
 
 const findTodo = (todos, id) => {
-    return todos.find(t => t.id === id);
+    return todos.find(t => t._id === id);
 }
 
 const mapStateToProps = (state) => {
@@ -16,10 +16,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onSubmit: (todo) => {
-            dispatch(updateTodo(todo))
+            dispatch(putTodo(todo))
         },
         onDelete: (id) => {
-            dispatch(deleteTodo(id))
+            dispatch(destroyTodo(id))
         }
     };
 }
@@ -31,11 +31,11 @@ class TodoDetail extends React.Component {
 
     render() {
             // let TodoDetail =  ({todos, routeParams, onSubmit}) => {
-            const todo = findTodo(this.props.todos, +this.props.routeParams.id);
+            const todo = findTodo(this.props.todos, this.props.routeParams.id);
             let ddlPriority, txtTitle, txtDescription, chkIsComplete;
             return (
                 <div>
-                    <Link to="/">Go Back</Link>
+                    <Link to="/" ref="lnkBack">Go Back</Link>
                     <h2>{`Editing: ${todo.title}`}</h2>
                     <form onSubmit={(e) => {
                         e.preventDefault();
@@ -44,10 +44,8 @@ class TodoDetail extends React.Component {
                         const priority = ddlPriority.value;
                         const isComplete = chkIsComplete.checked;
 
-                        this.props.onSubmit({id:+this.props.routeParams.id,title, description, priority, isComplete});
-                        this.context.router.push({
-                            pathname: '/'
-                        });
+                        this.props.onSubmit({_id: this.props.routeParams.id,title, description, priority, isComplete});
+                        browserHistory.push('/');
                     }}>
                         <input type="text" defaultValue={todo.title} ref={node => {txtTitle = node}} />
                         <textarea ref={node => txtDescription = node} defaultValue={todo.description}/>
@@ -64,7 +62,8 @@ class TodoDetail extends React.Component {
                           Update
                         </button>
                         <button onClick={() => {
-                            this.props.onDelete(+this.props.routeParams.id);
+                            this.props.onDelete(this.props.routeParams.id);
+                            browserHistory.push('/');
                         }}>
                             Delete
                         </button>
@@ -72,10 +71,6 @@ class TodoDetail extends React.Component {
                 </div>)
     }
 }
-
-TodoDetail.contextTypes = () => ({
-  router: React.PropTypes.func.isRequired
-});
 
 TodoDetail = connect(
     mapStateToProps,

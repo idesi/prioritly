@@ -9,7 +9,7 @@ var mongoose = require('mongoose');
 var serverConfig = require('./config');
 var app = express();
 var routes = require('./routes/routes');
-
+var bodyParser = require('body-parser');
 mongoose.connect(serverConfig.database);
 mongoose.connection.on('error', function() {
   console.info('Error: Could not connect to MongoDB. Did you forget to run `mongod`?'.red);
@@ -42,18 +42,9 @@ if (isDeveloping) {
     res.sendFile(path.join('../dist/index.html'));
   });
 }
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-// app.get('/todos', function(req, res, next){
-//     console.log('todos is trying');
-//     Todo.find({})
-//         .exec(function(err, todos){
-//             if (err) {
-//                 next(err);
-//             }
-//
-//             res.json(todos);
-//         });
-// });
 app.use('/api', routes);
 
 

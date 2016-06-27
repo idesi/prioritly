@@ -19,7 +19,7 @@ const style = {
 
 const TodoList = (props) => {
     var todos = props.todos.map((todo) => {
-        return <Todo key={todo.id} {...todo} onClick={() => props.onTodoClick(todo.id)} />
+        return <Todo key={todo._id} {...todo} onClick={() => props.onTodoClick(todo)} />
     });
     return (
         <div>

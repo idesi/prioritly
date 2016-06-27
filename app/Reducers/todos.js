@@ -4,30 +4,30 @@ const todo = (state, action) => {
     switch (action.type) {
         case 'ADD_TODO':
             return {
+                _id: action.todo._id,
                 title: action.todo.title,
                 description: action.todo.description || '',
                 isComplete: false,
                 priority: action.todo.priority
             }
         case 'TOGGLE_TODO':
-             if (state.id !== action.id) {
+             if (state._id !== action._id) {
                  return state;
              }
-            return Object.assign({}, state, {isComplete: !state.isComplete});
+            return Object.assign({}, state, action.todo);
         case 'DELETE_TODO':
-        debugger;
-            if (state.id !== action.id) {
+            if (state._id !== action.id) {
                 return state;
             }
-            return false;
+            break;
         case 'UPDATE_TODO':
-            if (state.id !== action.todo.id) {
+            if (state._id !== action.todo._id) {
                 return state;
             }
 
            return Object.assign({}, state, action.todo);
        case 'CHANGE_PRIORITY':
-            if (state.id !== action.id) {
+            if (state._id !== action.id) {
                 return state;
             }
             return Object.assign({}, state, {priority: action.priority});
@@ -47,8 +47,11 @@ const todos = (state=[], action) => {
             let nstate = state.map((item) => {
                 return todo(item, action);
             });
-            debugger;
             return nstate;
+        case 'TODOS_SUCCESS':
+            return action.todos;
+        case 'TODOS_REQUEST':
+            return [];
         default:
             return state;
     }
