@@ -10,7 +10,8 @@ const styles ={
         color: 'rgb(0, 188, 212)'
     },
     high: {
-        color: 'rgb(255,64,129)'
+        color: 'rgb(255,64,129)',
+        float: 'left'
     },
     completed: {
         textDecoration: 'line-through',
@@ -18,16 +19,10 @@ const styles ={
     }
 }
 
-const Todo = ({_id, onClick, title, isComplete, priority, description,
-    // onTodoSave
-}) => {
+const Todo = ({_id, onClick, title, isComplete, priority, description}) => {
     return (
-        <div>
-        <Link
-            to={'/todo/' + _id}
-        >
-            <EditIcon />
-        </Link>
+        <div style={{clear: 'both'}}>
+
 
             <ListItem
                 primaryText={`${title} (${priority.toUpperCase()})`}
@@ -35,6 +30,12 @@ const Todo = ({_id, onClick, title, isComplete, priority, description,
                 secondaryText={isComplete ? 'Complete' : 'Active'}
                 style={isComplete ? styles['completed'] : styles[priority]}
             />
+            <Link
+                to={'/todo/' + _id}
+                style={{width: '20px', marginTop: '20px'}}
+            >
+                <EditIcon />
+            </Link>
         </div>
 
 

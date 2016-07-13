@@ -3,7 +3,7 @@ import AppBar from 'material-ui/AppBar';
 
 
 const styles = {
-    position: 'absolute',
+    position: 'fixed',
     bottom: 0,
     left: 0,
     padding: '20px 24px',

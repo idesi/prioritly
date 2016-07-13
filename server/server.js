@@ -31,11 +31,6 @@ if (isDeveloping) {
   });
 
   app.use(middleware);
-  //app.use(webpackHotMiddleware(compiler));
-  // app.get('*', function response(req, res) {
-  //   res.write(middleware.fileSystem.readFileSync(path.join('../dist/index.html')));
-  //   res.end();
-  // });
 } else {
   app.use(express.static('../dist'));
   app.get('*', function response(req, res) {
@@ -44,10 +39,7 @@ if (isDeveloping) {
 }
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
 app.use('/api', routes);
-
-
 app.listen(port, function(){
     console.log('App listening on port ' + port);
 });

@@ -13,6 +13,15 @@ const mapStateToProps = (state) => {
     }
 }
 
+const labelStyles = {
+        width: '150px',
+        textAlign: 'right',
+        marginRight: '20px',
+        display: 'inline-block'
+}
+const inputStyles = {marginRight: '10px', border: '2px solid #ff4081', borderRadius: '5px', width: '200px', height: '30px', boxSizing: 'border-box'};
+const selectStyles = {marginRight: '10px', width: '100px', background: '#00bcd4', color: 'white', height: '30px'}
+
 const mapDispatchToProps = (dispatch) => {
     return {
         onSubmit: (todo) => {
@@ -34,7 +43,7 @@ class TodoDetail extends React.Component {
             const todo = findTodo(this.props.todos, this.props.routeParams.id);
             let ddlPriority, txtTitle, txtDescription, chkIsComplete;
             return (
-                <div>
+                <div style={{fontFamily: 'Roboto sans-serif'}}>
                     <Link to="/" ref="lnkBack">Go Back</Link>
                     <h2>{`Editing: ${todo.title}`}</h2>
                     <form onSubmit={(e) => {
@@ -47,17 +56,24 @@ class TodoDetail extends React.Component {
                         this.props.onSubmit({_id: this.props.routeParams.id,title, description, priority, isComplete});
                         browserHistory.push('/');
                     }}>
-                        <input type="text" defaultValue={todo.title} ref={node => {txtTitle = node}} />
-                        <textarea ref={node => txtDescription = node} defaultValue={todo.description}/>
-
-                        <select ref={node => {
+                        <label style={labelStyles}>Title:</label>
+                        <input type="text" style={inputStyles} defaultValue={todo.title} ref={node => {txtTitle = node}} />
+                        <br />
+                        <label style={labelStyles}>Description:</label>
+                        <textarea ref={node => txtDescription = node} defaultValue={todo.description} style={inputStyles}/>
+                        <br />
+                        <label style={labelStyles}>Priority:</label>
+                        <select style={selectStyles} ref={node => {
                             ddlPriority = node
                         }}>
                             <option value="high">High</option>
                             <option value="medium">Medium</option>
                             <option value="low">Low</option>
                         </select>
+                        <br />
+                        <label style={labelStyles}>Is Complete:</label>
                         <input type="checkbox" checked={todo.isComplete} ref={node => {chkIsComplete = node}} />
+                        <br />
                         <button type="submit">
                           Update
                         </button>
